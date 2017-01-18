@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">We啪啪</string>
+    <string name="iconfont_xingxing">&#xe628;</string>
+    <string name="iconfont_xiebaopeishi">&#xe644;</string>
+    <string-array name="main_list_text">
+        <item>每日一笑</item>
+        <item>啪啪打卡</item>
+        <item>查看记录</item>
+        <item>呼叫南哥</item>
+    </string-array>
+    <string-array name="main_list_pic">
+        <item>\ue642</item>
+        <item>\ue627</item>
+        <item>\ue61f</item>
+        <item>\ue618</item>
+    </string-array>
+</resources>
