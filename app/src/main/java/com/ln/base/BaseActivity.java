@@ -11,10 +11,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.bugtags.library.Bugtags;
 import com.ln.pia.R;
 import com.ln.utils.ActivityCollector;
 import com.ln.utils.PermissionListener;
@@ -33,7 +35,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private TextView mTitle;
     private static PermissionListener mListener;
-
 
 
     @Override
@@ -96,11 +97,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Bugtags.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        Bugtags.onPause(this);
     }
 
     @Override
@@ -108,6 +111,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         ButterKnife.unbind(this);
         ActivityCollector.removeActivity(this);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        //注：回调 3
+        Bugtags.onDispatchTouchEvent(this, event);
+        return super.dispatchTouchEvent(event);
     }
 
     /**
@@ -142,24 +152,24 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public static void requestRuntimePermission(String[] permissions, PermissionListener listener) {
-            Activity topActivity = ActivityCollector.getTopActivity();
-            if (topActivity == null) {
-                return;
+        Activity topActivity = ActivityCollector.getTopActivity();
+        if (topActivity == null) {
+            return;
+        }
+        mListener = listener;
+        List<String> permissionList = new ArrayList<>();
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(topActivity, permission) != PackageManager.PERMISSION_GRANTED) {
+                permissionList.add(permission);
             }
-            mListener = listener;
-            List<String> permissionList = new ArrayList<>();
-            for (String permission : permissions) {
-                if (ContextCompat.checkSelfPermission(topActivity, permission) != PackageManager.PERMISSION_GRANTED) {
-                    permissionList.add(permission);
-                }
-            }
-            if (!permissionList.isEmpty()) {
-                //把未授权的加入到List中
-                ActivityCompat.requestPermissions(topActivity, permissionList.toArray(new String[permissionList.size()]), 1);
-            } else {
-                //表示所有都已经授权
-                mListener.onGranted();
-            }
+        }
+        if (!permissionList.isEmpty()) {
+            //把未授权的加入到List中
+            ActivityCompat.requestPermissions(topActivity, permissionList.toArray(new String[permissionList.size()]), 1);
+        } else {
+            //表示所有都已经授权
+            mListener.onGranted();
+        }
     }
 
     @Override
