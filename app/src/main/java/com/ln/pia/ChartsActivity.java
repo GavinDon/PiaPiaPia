@@ -66,7 +66,7 @@ public class ChartsActivity extends BaseActivity {
             mRecyclerView.setVisibility(View.VISIBLE);
             mRecyclerView.setAdapter(mAdapter);
             mAdapter.updateData(temp);
-        }else {
+        } else {
             tvNotshow.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.GONE);
         }
@@ -118,13 +118,19 @@ public class ChartsActivity extends BaseActivity {
             tmp.add(allList.get(i).getDate());
         }
         DPCManager.getInstance().setDecorTL(tmp);
-        picker.setDPDecor(new DPDecor() {
+        new Thread(new Runnable() {
             @Override
-            public void drawDecorTL(Canvas canvas, Rect rect, Paint paint, String data) {
-                paint.setColor(Color.parseColor("#9bcb67"));
-                canvas.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 3F, paint);
+            public void run() {
+                picker.setDPDecor(new DPDecor() {
+                    @Override
+                    public void drawDecorTL(Canvas canvas, Rect rect, Paint paint, String data) {
+                        paint.setColor(Color.parseColor("#9bcb67"));
+                        canvas.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 3F, paint);
+                    }
+                });
             }
-        });
+        }).start();
+
 
     }
 }

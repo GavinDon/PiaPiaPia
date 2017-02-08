@@ -76,3 +76,14 @@ public static java.lang.String TABLENAME;
 -keep class **$Properties
 -dontwarn org.greenrobot.greendao.database.**
 -dontwarn rx.**
+
+-keepattributes LineNumberTable,SourceFile
+
+ # ProGuard configurations for Bugtags
+  -keep class com.bugtags.library.** {*;}
+  -dontwarn com.bugtags.library.**
+  -keep class io.bugtags.** {*;}
+  -dontwarn io.bugtags.**
+  -dontwarn org.apache.http.**
+  -dontwarn android.net.http.AndroidHttpClient
+    # End Bugtags

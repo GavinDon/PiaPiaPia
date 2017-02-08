@@ -7,8 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/white</item>
-        <!--<item name="android:windowAnimationStyle">@style/activityAnimation</item>-->
-
+        <!--<item name="android:windowAnimationStyle">@style/anim_fade</item>-->
     </style>
 
     <style name="Theme.ToolBar.setting" parent="Theme.AppCompat.Light.NoActionBar">
@@ -19,12 +18,11 @@
         <item name="android:src">@mipmap/settings</item>
     </style>
     <!--Activity过场动画-->
-    <style name="activityAnimation" parent="@android:style/Animation">
-        <item name="android:activityOpenEnterAnimation">@anim/enter_anim</item>
-        <item name="android:activityOpenExitAnimation">@anim/exit_anim</item>
-        <item name="android:activityCloseEnterAnimation">@anim/enter_anim</item>
-        <item name="android:activityCloseExitAnimation">@anim/exit_anim</item>
-
+    <style name="anim_fade" parent="@android:style/Animation.Activity" >
+        <item name="android:activityOpenEnterAnimation">@anim/from_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/from_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/out_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/out_right</item>
     </style>
 
     <style name="sweet_dialog" parent="android:Theme.Dialog">
