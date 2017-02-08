@@ -829,11 +829,12 @@ public class MonthView extends View {
         } else {
             strMouth = String.valueOf(centerMonth);
         }
-        if (Integer.parseInt(mCManager.obtainDPInfo(centerYear, centerMonth)[i][j].strG) < 10) {
-            strDay = "0" + mCManager.obtainDPInfo(centerYear, centerMonth)[i][j].strG;
-        } else {
+//      String d= mCManager.obtainDPInfo(centerYear, centerMonth)[i][j].strG;
+//        if (Integer.parseInt(mCManager.obtainDPInfo(centerYear, centerMonth)[i][j].strG) < 10) {
+//            strDay = "0" + mCManager.obtainDPInfo(centerYear, centerMonth)[i][j].strG;
+//        } else {
             strDay = mCManager.obtainDPInfo(centerYear, centerMonth)[i][j].strG;
-        }
+//        }
         final String date = centerYear + "-" + strMouth + "-" + strDay;
         return date;
     }
