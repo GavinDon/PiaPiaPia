@@ -33,6 +33,7 @@ android {
         targetGenDir 'src/main/java'
         daoPackage 'com.ln.db'
     }
+
 }
 bugtags {
     //自动上传符号表功能配置，如果需要根据 build varint 配置，请参考帮助中心->符号表->Android 符号表->配置自动上传符号表

@@ -32,7 +32,7 @@ public class DbCore {
 
 	public static DaoMaster getDaoMaster() {
 		if (daoMaster == null) {
-			DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(mContext, DB_NAME, null);
+			DaoMaster.OpenHelper helper = new MyOpenHelper(mContext, DB_NAME, null);
 			SQLiteDatabase db = helper.getWritableDatabase();
 			daoMaster = new DaoMaster(db);
 		}
