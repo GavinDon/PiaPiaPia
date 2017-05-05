@@ -6,14 +6,9 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.baidu.mapapi.map.Text;
 import com.ln.adapter.ChartsAdapter;
 import com.ln.base.BaseActivity;
 import com.ln.db.DbCore;
@@ -21,7 +16,6 @@ import com.ln.db.RecordPiaDB;
 import com.ln.db.RecordPiaDBDao;
 import com.ln.utils.DividerItemDecoration;
 import com.ln.utils.MTools;
-import com.ln.views.MyCalenderTheme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +23,6 @@ import java.util.List;
 import butterknife.Bind;
 import cn.aigestudio.datepicker.bizs.calendars.DPCManager;
 import cn.aigestudio.datepicker.bizs.decors.DPDecor;
-import cn.aigestudio.datepicker.bizs.themes.DPTManager;
 import cn.aigestudio.datepicker.cons.DPMode;
 import cn.aigestudio.datepicker.views.DatePicker;
 
@@ -91,6 +84,7 @@ public class ChartsActivity extends BaseActivity {
         } else {
             mAdapter.deleteData();
         }
+        //选中日期
         picker.setOnDatePickedListener(new DatePicker.OnDatePickedListener() {
             @Override
             public void onDatePicked(String date) {

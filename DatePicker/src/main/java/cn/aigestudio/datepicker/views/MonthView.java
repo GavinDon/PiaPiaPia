@@ -630,6 +630,7 @@ public class MonthView extends View {
                                     }
                                 }
                             });
+
                             animSet.start();
                         }
                         cirApr.put(date, circle);
